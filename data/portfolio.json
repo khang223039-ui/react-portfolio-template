@@ -1,18 +1,18 @@
 {
-  "name": "LamHoangKhang",
+  "name": "HoangKhang",
   "headerTaglineOne": "Xin chào 👋",
   "headerTaglineTwo": "Tôi là Lâm Hoàng Khang -",
   "headerTaglineThree": "Backend & Database Developer",
   "headerTaglineFour": " tại Cần Thơ, Việt Nam.",
   "showCursor": false,
   "showBlog": false,
-  "darkMode": false,
+  "darkMode": true,
   "showResume": true,
   "socials": [
     {
       "id": "1",
       "title": "Github",
-      "link": "https://github.com/Linh22400"
+      "link": "https://github.com/khang223039-ui"
     },
     {
       "id": "2",
@@ -21,6 +21,11 @@
     },
     {
       "id": "3",
+      "title": "Phone",
+      "link": "tel:0839663466"
+    },
+    {
+      "id": "4",
       "title": "Zalo",
       "link": "https://zalo.me/0839663466"
     }
@@ -28,17 +33,24 @@
   "projects": [
     {
       "id": "1",
-      "title": "Quản Lý Bất Động Sản",
-      "description": "Backend | ASP.NET MVC 5, SQL Server",
-      "imageSrc": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=400&q=60",
-      "url": "https://github.com/Linh22400"
-    },
-    {
-      "id": "2",
       "title": "Hemfastfood",
       "description": "Web Creator | WordPress, WooCommerce",
       "imageSrc": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=60",
-      "url": "https://github.com/Linh22400"
+      "url": "https://hemfastfood.id.vn"
+    },
+    {
+      "id": "2",
+      "title": "Quản Lý Bất Động Sản",
+      "description": "Backend | ASP.NET MVC 5, SQL Server",
+      "imageSrc": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=400&q=60",
+      "url": "https://github.com/khang223039-ui"
+    },
+    {
+      "id": "3",
+      "title": "Website Xe Điện 3D",
+      "description": "Fullstack | Next.js, Strapi, PostgreSQL",
+      "imageSrc": "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=400&q=60",
+      "url": "https://xedienducduy.id.vn"
     }
   ],
   "services": [
@@ -62,32 +74,11 @@
   "resume": {
     "tagline": "👋 Tôi là Lập trình viên Backend & Database.",
     "description": "Có kinh nghiệm thực chiến với ASP.NET MVC, Next.js và quản trị Database qua các dự án thực tế.",
-    "experiences": [
-      {
-        "id": "1",
-        "dates": "2024 - 2025",
-        "type": "Dự án cá nhân",
-        "position": "Fullstack Developer - Hệ thống Bất Động Sản",
-        "bullets": [
-          "Thiết kế database SQL Server, tối ưu truy vấn bằng Entity Framework.",
-          "Xây dựng chức năng phân quyền Admin/User và đăng tin tự động."
-        ]
-      },
-      {
-        "id": "2",
-        "dates": "2023 - 2024",
-        "type": "Freelance",
-        "position": "Web Creator - Hemfastfood",
-        "bullets": [
-          "Xây dựng website bán hàng với WordPress & WooCommerce.",
-          "Tối ưu SEO và tích hợp cổng thanh toán online."
-        ]
-      }
-    ],
+    "experiences": [],
     "education": {
       "universityName": "Trường Đại học Nam Cần Thơ",
       "universityDate": "2022 - 2026",
-      "universityPara": "Chuyên ngành: Công nghệ thông tin. Điểm trung bình (GPA): 3.2/4.0. Các môn tiêu biểu: Lập trình Web, Cấu trúc dữ liệu & Giải thuật, Quản trị CSDL."
+      "universityPara": "Chuyên ngành: Công nghệ thông tin. Điểm trung bình (GPA): 3.2/4.0."
     },
     "languages": ["C# (ASP.NET)", "JavaScript", "SQL", "Java", "HTML/CSS"],
     "frameworks": ["Next.js", "Entity Framework", "Node.js", "Bootstrap", "jQuery"],
