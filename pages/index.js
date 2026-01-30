@@ -1,5 +1,4 @@
 import { useRef } from "react";
-import Header from "../components/Header";
 import ServiceCard from "../components/ServiceCard";
 import Socials from "../components/Socials";
 import WorkCard from "../components/WorkCard";
@@ -15,15 +14,16 @@ import Cursor from "../components/Cursor";
 import data from "../data/portfolio.json";
 
 export default function Home() {
-  // Ref
+  // 1. Tạo các "cái neo" (Ref) để cuộn tới
   const workRef = useRef();
   const aboutRef = useRef();
+  const contactRef = useRef(); // <-- Đã thêm cái neo cho phần Liên hệ
   const textOne = useRef();
   const textTwo = useRef();
   const textThree = useRef();
   const textFour = useRef();
 
-  // Handling Scroll
+  // 2. Các hàm xử lý cuộn trang
   const handleWorkScroll = () => {
     window.scrollTo({
       top: workRef.current.offsetTop,
@@ -35,6 +35,15 @@ export default function Home() {
   const handleAboutScroll = () => {
     window.scrollTo({
       top: aboutRef.current.offsetTop,
+      left: 0,
+      behavior: "smooth",
+    });
+  };
+
+  // <-- Hàm cuộn xuống Liên hệ (Footer)
+  const handleContactScroll = () => {
+    window.scrollTo({
+      top: contactRef.current.offsetTop,
       left: 0,
       behavior: "smooth",
     });
@@ -59,12 +68,16 @@ export default function Home() {
       <div className="gradient-circle-bottom"></div>
 
       <div className="container mx-auto mb-10">
+        {/* Truyền các hàm cuộn xuống cho Header */}
         <Header
           handleWorkScroll={handleWorkScroll}
           handleAboutScroll={handleAboutScroll}
+          handleContactScroll={handleContactScroll} 
         />
+
         <div className="laptop:mt-20 mt-10">
           <div className="mt-5">
+            {/* Chữ Xin chào đã chỉnh nhỏ gọn */}
             <h1
               ref={textOne}
               className="text-2xl tablet:text-4xl laptop:text-4xl laptopl:text-5xl p-1 tablet:p-2 text-bold w-full w-4/5 mob:w-full laptop:w-4/5"
@@ -93,8 +106,10 @@ export default function Home() {
 
           <Socials className="mt-2 laptop:mt-5" />
         </div>
+        
+        {/* Phần DỰ ÁN (Work) */}
         <div className="mt-10 laptop:mt-30 p-2 laptop:p-0" ref={workRef}>
-          <h1 className="text-2xl text-bold">Work.</h1>
+          <h1 className="text-2xl text-bold">Dự án.</h1>
 
           <div className="mt-5 laptop:mt-10 grid grid-cols-1 tablet:grid-cols-2 gap-4">
             {data.projects.map((project) => (
@@ -109,8 +124,9 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Phần DỊCH VỤ / KỸ NĂNG */}
         <div className="mt-10 laptop:mt-30 p-2 laptop:p-0">
-          <h1 className="tablet:m-10 text-2xl text-bold">Services.</h1>
+          <h1 className="tablet:m-10 text-2xl text-bold">Kỹ năng.</h1>
           <div className="mt-5 tablet:m-10 grid grid-cols-1 laptop:grid-cols-2 gap-6">
             {data.services.map((service, index) => (
               <ServiceCard
@@ -121,22 +137,24 @@ export default function Home() {
             ))}
           </div>
         </div>
-        {/* This button should not go into production */}
-        {process.env.NODE_ENV === "development" && (
-          <div className="fixed bottom-5 right-5">
-            <Link href="/edit">
-              <Button type="primary">Edit Data</Button>
-            </Link>
-          </div>
-        )}
+
+        {/* Phần GIỚI THIỆU (About) */}
         <div className="mt-10 laptop:mt-40 p-2 laptop:p-0" ref={aboutRef}>
-          <h1 className="tablet:m-10 text-2xl text-bold">About.</h1>
+          <h1 className="tablet:m-10 text-2xl text-bold">Giới thiệu.</h1>
           <p className="tablet:m-10 mt-2 text-xl laptop:text-3xl w-full laptop:w-3/5">
             {data.aboutpara}
           </p>
         </div>
-        <Footer />
+
+        {/* Phần LIÊN HỆ (Contact) - Đã gắn Ref vào đây */}
+        <div className="mt-10 laptop:mt-40 p-2 laptop:p-0" ref={contactRef}>
+          <Footer />
+        </div>
+
       </div>
     </div>
   );
 }
+
+// Import Header ở cuối để tránh lỗi Reference
+import Header from "../components/Header";
