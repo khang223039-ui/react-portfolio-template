@@ -14,19 +14,19 @@ import Cursor from "../components/Cursor";
 import data from "../data/portfolio.json";
 
 export default function Home() {
-  // 1. Tạo các "cái neo" (Ref) để cuộn tới
+  // Tạo các neo (Ref)
   const workRef = useRef();
   const aboutRef = useRef();
-  const contactRef = useRef(); // <-- Đã thêm cái neo cho phần Liên hệ
+  const contactRef = useRef();
   const textOne = useRef();
   const textTwo = useRef();
   const textThree = useRef();
   const textFour = useRef();
 
-  // 2. Các hàm xử lý cuộn trang
+  // Các hàm cuộn trang
   const handleWorkScroll = () => {
     window.scrollTo({
-      top: workRef.current.offsetTop,
+      top: workRef.current.offsetTop - 80, // Trừ 80px để không bị menu che
       left: 0,
       behavior: "smooth",
     });
@@ -34,13 +34,12 @@ export default function Home() {
 
   const handleAboutScroll = () => {
     window.scrollTo({
-      top: aboutRef.current.offsetTop,
+      top: aboutRef.current.offsetTop - 80,
       left: 0,
       behavior: "smooth",
     });
   };
 
-  // <-- Hàm cuộn xuống Liên hệ (Footer)
   const handleContactScroll = () => {
     window.scrollTo({
       top: contactRef.current.offsetTop,
@@ -68,16 +67,15 @@ export default function Home() {
       <div className="gradient-circle-bottom"></div>
 
       <div className="container mx-auto mb-10">
-        {/* Truyền các hàm cuộn xuống cho Header */}
         <Header
           handleWorkScroll={handleWorkScroll}
           handleAboutScroll={handleAboutScroll}
-          handleContactScroll={handleContactScroll} 
+          handleContactScroll={handleContactScroll}
         />
 
+        {/* 1. CÂU CHÀO (HERO SECTION) */}
         <div className="laptop:mt-20 mt-10">
           <div className="mt-5">
-            {/* Chữ Xin chào đã chỉnh nhỏ gọn */}
             <h1
               ref={textOne}
               className="text-2xl tablet:text-4xl laptop:text-4xl laptopl:text-5xl p-1 tablet:p-2 text-bold w-full w-4/5 mob:w-full laptop:w-4/5"
@@ -103,14 +101,34 @@ export default function Home() {
               {data.headerTaglineFour}
             </h1>
           </div>
-
           <Socials className="mt-2 laptop:mt-5" />
         </div>
+
+        {/* 2. GIỚI THIỆU (ABOUT) - Đã đưa lên trên */}
+        <div className="mt-10 laptop:mt-40 p-2 laptop:p-0" ref={aboutRef}>
+          <h1 className="tablet:m-10 text-2xl text-bold">Giới thiệu.</h1>
+          <p className="tablet:m-10 mt-2 text-xl laptop:text-3xl w-full laptop:w-3/5">
+            {data.aboutpara}
+          </p>
+        </div>
+
+        {/* 3. KỸ NĂNG (SERVICES) */}
+        <div className="mt-10 laptop:mt-30 p-2 laptop:p-0">
+          <h1 className="tablet:m-10 text-2xl text-bold">Kỹ năng.</h1>
+          <div className="mt-5 tablet:m-10 grid grid-cols-1 laptop:grid-cols-2 gap-6">
+            {data.services.map((service, index) => (
+              <ServiceCard
+                key={index}
+                name={service.title}
+                description={service.description}
+              />
+            ))}
+          </div>
+        </div>
         
-        {/* Phần DỰ ÁN (Work) */}
+        {/* 4. DỰ ÁN (WORK) - Đã đưa xuống dưới */}
         <div className="mt-10 laptop:mt-30 p-2 laptop:p-0" ref={workRef}>
           <h1 className="text-2xl text-bold">Dự án.</h1>
-
           <div className="mt-5 laptop:mt-10 grid grid-cols-1 tablet:grid-cols-2 gap-4">
             {data.projects.map((project) => (
               <WorkCard
@@ -124,29 +142,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Phần DỊCH VỤ / KỸ NĂNG */}
-        <div className="mt-10 laptop:mt-30 p-2 laptop:p-0">
-          <h1 className="tablet:m-10 text-2xl text-bold">Kỹ năng.</h1>
-          <div className="mt-5 tablet:m-10 grid grid-cols-1 laptop:grid-cols-2 gap-6">
-            {data.services.map((service, index) => (
-              <ServiceCard
-                key={index}
-                name={service.title}
-                description={service.description}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Phần GIỚI THIỆU (About) */}
-        <div className="mt-10 laptop:mt-40 p-2 laptop:p-0" ref={aboutRef}>
-          <h1 className="tablet:m-10 text-2xl text-bold">Giới thiệu.</h1>
-          <p className="tablet:m-10 mt-2 text-xl laptop:text-3xl w-full laptop:w-3/5">
-            {data.aboutpara}
-          </p>
-        </div>
-
-        {/* Phần LIÊN HỆ (Contact) - Đã gắn Ref vào đây */}
+        {/* 5. LIÊN HỆ (CONTACT) */}
         <div className="mt-10 laptop:mt-40 p-2 laptop:p-0" ref={contactRef}>
           <Footer />
         </div>
@@ -156,5 +152,5 @@ export default function Home() {
   );
 }
 
-// Import Header ở cuối để tránh lỗi Reference
+// Import Header ở cuối
 import Header from "../components/Header";
